@@ -10,6 +10,7 @@ namespace App;
 use Noodlehaus\Config;
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Tinify;
 
 /**
  * Class main
@@ -44,8 +45,11 @@ class Main
      */
     public function run()
     {
-        $this->log->info('Hello', ['world']);
-        $this->log->debug('config', (array)$this->config->all());
+        Tinify\setKey($this->config['TINIFY_API_KEY']);
+        $dirs = scandir('images');
+        foreach ($dirs as $dir) {
+            Tinify\fromFile("images/{$dir}")->toFile("images/{$dir}");
+        }
         return null;
     }
 }

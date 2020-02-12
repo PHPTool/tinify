@@ -5,7 +5,5 @@
  * Time: 14:00
  */
 return [
-    'test' => '1',
-    'test2' => '1',
-    'test3' => '1',
+    'TINIFY_API_KEY' => '',
 ];
